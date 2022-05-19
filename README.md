@@ -1,2 +1,2 @@
 # LeetCode-Solutions
-Collection of LeetCode my solutions solved over the days.
+Collection of my LeetCode solutions solved over the days.
