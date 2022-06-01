@@ -3,9 +3,11 @@ class Solution {
         int c = 1;
         for (int i=1;i<nums.length;++i)
         {
-            if (nums[i]!=nums[i-1])
+            int n = nums[i];
+            int m = nums[i-1];
+            if (n!=m)
             {
-                nums[c]=nums[i];
+                nums[c]=n;
                 ++c;
             }
         }
