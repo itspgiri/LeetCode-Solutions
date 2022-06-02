@@ -2,13 +2,14 @@ So, I initially went through some brute-force methods but began to search for mo
 ​
 Now, there are some key points:
 ​
-1. The minimum max value is going to be nums[0] so we can directly keep it that, we don't need to do int MAX = Integer.MAX_VALUE
+The minimum max value is going to be nums[0] so we can directly keep it that, we don't need to do int MAX = Integer.MAX_VALUE
 ​
-2. We can reduce the question to a O(nums.length) complexity.
+We can reduce the question to a O(nums.length) complexity.
 ​
-3. We can prevent it from re-checking previously already calculate sum (As in the case of using two for loops as suggested by others)
+We can prevent it from re-checking previously already calculate sum (As in the case of using two for loops as suggested by others)
 ​
 So we do something like this:
+​
 ```
 class Solution {
 public int maxSubArray(int[] nums) {
@@ -22,5 +23,4 @@ return max_sum;
 }
 }
 ```
-​
 Now, there are clearly some solutions which are faster than this, would love to hear how this can be further optimised.
