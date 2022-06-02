@@ -16,3 +16,19 @@ return -1;
 }
 }
 ```
+​
+### Using sorting
+Now, in this case we end up modifying our array, again making the question invalid.
+```
+class Solution {
+public int findDuplicate(int[] nums) {
+Arrays.sort(nums);
+for (int i=1; i<nums.length; i++)
+{
+if (nums[i-1]==nums[i])
+return nums[i];
+}
+return -1;
+}
+}
+```
