@@ -19,3 +19,8 @@ return matrixT;
 }
 ```
 ​
+**Similar method to calculate
+**```
+class Solution {
+public int[][] transpose(int[][] matrix) {
+int m = matrix.length;
