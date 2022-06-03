@@ -1,19 +1,28 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> res = new LinkedList<>();
-        int[][] dp = new int[numRows+1][numRows+1];
+          List<List<Integer>> res = new ArrayList<>();
         
-        for(int i = 1;i<numRows+1;i++){
-            List<Integer> temp = new LinkedList<>();
-            for(int j = 1;j<=i;j++){
-                if(j==1 || i==j)
-                    dp[i][j] = 1;
-                else
-                    dp[i][j] = dp[i-1][j-1]+dp[i-1][j];
-                temp.add(dp[i][j]);
+        for(int i = 0 ; i < numRows ; i++){
+          
+         List<Integer> row = new ArrayList<>();
+          if(i == 0){
+            row.add(1);
+          }
+          else if(i == 1){
+            row.add(1);
+            row.add(1);
+          }
+          else{
+            List<Integer> prevRow = res.get(res.size()-1);
+            row.add(1);  //first element of your row
+            for(int x = 0;x < prevRow.size()-1 ; x++){
+                 row.add(prevRow.get(x)+prevRow.get(x+1));
             }
-            res.add(temp);
+            row.add(1); //last element of your row
+          }
+          res.add(row);
+          
         }
-        return res;
+      return res;
     }
 }
