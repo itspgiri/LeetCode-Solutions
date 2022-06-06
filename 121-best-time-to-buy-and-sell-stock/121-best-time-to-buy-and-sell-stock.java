@@ -1,15 +1,12 @@
 class Solution {
     public int maxProfit(int[] prices) {
-     int lowest_buy_price = Integer.MAX_VALUE;
-    int max_proft = 0;
-        for (int i=0; i<prices.length; i++)
-        {
-            if (prices[i] < lowest_buy_price)
-                lowest_buy_price = prices[i];
-            
-            int sell_today = prices[i]-lowest_buy_price;
-            max_proft = Math.max(sell_today, max_proft);
+        int curr_sell_val = 0, maxSoFar = 0;
+        for(int i = 1; i < prices.length; i++) {
+            curr_sell_val = Math.max(0, curr_sell_val += prices[i] - prices[i-1]);
+            maxSoFar = Math.max(curr_sell_val, maxSoFar);
         }
-        return max_proft;
+        return maxSoFar;
     }
 }
+// *maxCur = current maximum value
+// *maxSoFar = maximum value found so far
