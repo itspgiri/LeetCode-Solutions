@@ -5,15 +5,13 @@ class Solution {
         {
                 map.put(nums[i],i);
         }
-        System.out.println(map);
         for (int i=0; i<nums.length;i++)
         {
             int c = target - nums[i];
             if (map.containsKey(c))
             {
-            int d = map.get(c);
-            if (d!=i)
-            return new int[]{i,d};
+            if (map.get(c)!=i)
+            return new int[]{i,map.get(c)};
             }
         }
         return null;
