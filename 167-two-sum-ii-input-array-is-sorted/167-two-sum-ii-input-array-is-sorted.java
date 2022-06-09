@@ -1,15 +1,15 @@
 class Solution {
 
-    public int[] twoSum(int[] numbers, int target) {
+    public int[] twoSum(int[] n, int t) {
         int l = 0;
         int r = 1;
         while (l < r) {
-            int s = numbers[l] + numbers[r];
-            if (s == target) return new int[] { l + 1, r + 1 }; 
-            else if (s < target) {
+            int s = n[l] + n[r];
+            if (s == t) return new int[] { l + 1, r + 1 }; 
+            else if (s < t) {
                 l++;
                 r++;
-            } else if (s > target) {
+            } else if (s > t) {
                 l--;
             }
         }
