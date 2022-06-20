@@ -21,18 +21,17 @@ class Solution {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
         
-        while(!queue.isEmpty())
-        {
+        while (!queue.isEmpty()) {
             List<Integer> Level_Result = new ArrayList<Integer>();
             int current_level = queue.size();
             for (int i=0; i<current_level; i++)
             {
-                TreeNode n = queue.poll();
-                Level_Result.add(n.val);
-                if (n.left != null)
-                queue.offer(n.left);
-                if (n.right != null)
-                queue.offer(n.right);
+            TreeNode n = queue.poll();
+            Level_Result.add(n.val);
+            if (n.left != null) 
+            queue.offer(n.left);
+            if (n.right != null) 
+           queue.offer(n.right);
             }
             result.add(Level_Result);
         }
