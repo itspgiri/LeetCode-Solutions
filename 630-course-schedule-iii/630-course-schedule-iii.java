@@ -1,13 +1,23 @@
-public class Solution {
+class Solution {
     public int scheduleCourse(int[][] courses) {
-	var maxHeap = new PriorityQueue<Integer>(Comparator.reverseOrder());
-	Arrays.sort(courses, Comparator.comparingInt(course -> course[1]));
+        Arrays.sort (courses, (course1, course2) -> course1[1] - course2[1]);
 
-	for (int i = 0, total = 0; i < courses.length; i++) {
-		maxHeap.add(courses[i][0]);
-		if ((total += courses[i][0]) > courses[i][1])
-			total -= maxHeap.poll();
-	}
-	return maxHeap.size();
-}
+        int days = 0;
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<> ((a, b) -> (b - a));
+
+        for (int[] course : courses) {
+            if (days + course[0] <= course[1]) {
+                days += course[0];
+                maxHeap.offer (course[0]);
+            }
+            else if (!maxHeap.isEmpty () && maxHeap.peek () > course[0]) {
+                days -= maxHeap.poll ();
+                days += course[0];
+                maxHeap.offer (course[0]);
+            }
+        }
+
+        return maxHeap.size ();
+
+    }
 }
