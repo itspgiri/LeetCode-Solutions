@@ -1,5 +1,5 @@
 class Solution {
-    public boolean isPossible(int[] target) {
+   public boolean isPossible(int[] target) {
 	if (target.length == 1) return target[0] == 1;
 
 	PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
