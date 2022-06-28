@@ -1,19 +1,18 @@
 class Solution {
-    int res = 0;
+    int result = -1;
 
     public int diameterOfBinaryTree(TreeNode root) {
-        getDiameter(root);
-        return res - 1;
+        dfs(root);
+        return result;
     }
 
-    public int getDiameter(TreeNode root) {
-        if (root == null) {
-            return 0;
+    private int dfs(TreeNode current) {
+        if (current == null) {
+            return -1;
         }
-
-        int left = getDiameter(root.left);
-        int right = getDiameter(root.right);
-        res = Math.max(res, (left + right + 1));
-        return Math.max(left, right) + 1;
+        int left = 1 + dfs(current.left);
+        int right = 1 + dfs(current.right);
+        result = Math.max(result, (left + right));
+        return Math.max(left, right);
     }
 }
