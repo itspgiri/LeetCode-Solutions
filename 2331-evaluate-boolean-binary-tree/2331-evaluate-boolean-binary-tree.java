@@ -27,7 +27,10 @@ class Solution {
         
         if (root.val == 2)
             return left_val | right_val;
-        else
+        
+        if (root.val == 3)
             return left_val & right_val;
+        
+        return false;
     }
 }
