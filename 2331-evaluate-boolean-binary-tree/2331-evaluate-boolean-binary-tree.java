@@ -21,16 +21,12 @@ class Solution {
         if (root.val == 1)
             return true;
         
-        //non leaf node
-        boolean f = evaluateTree(root.left);
-        boolean g= evaluateTree(root.right);
+        boolean left_val = evaluateTree(root.left);
+        boolean right_val = evaluateTree(root.right);
         
         if (root.val == 2)
-            return f | g;
-        
-        if (root.val == 3)
-            return f & g;
-        
-        return false;
+            return left_val | right_val;
+        else
+            return left_val & right_val;
     }
 }
