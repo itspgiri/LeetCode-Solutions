@@ -16,21 +16,18 @@
 class Solution {
     public boolean evaluateTree(TreeNode root) {
         if (root.val == 0)
-            return false; 
+            return false;
         
         if (root.val == 1)
             return true;
         
-        boolean l = evaluateTree(root.left);
-        boolean r = evaluateTree(root.right);
+        //non leaf node
+        boolean left_val = evaluateTree(root.left);
+        boolean right_val = evaluateTree(root.right);
         
-        int s = root.val;
-        if (s == 3)
-            return l && r;
-            
-        if (s == 2)
-            return l | r;
-          
-        return false;
+        if (root.val == 2)
+            return left_val | right_val;
+        else
+            return left_val & right_val;
     }
 }
