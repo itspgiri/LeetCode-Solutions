@@ -22,14 +22,14 @@ class Solution {
             return true;
         
         //non leaf node
-        boolean left_val = evaluateTree(root.left);
-        boolean right_val = evaluateTree(root.right);
+        boolean f = evaluateTree(root.left);
+        boolean g= evaluateTree(root.right);
         
         if (root.val == 2)
-            return left_val | right_val;
+            return f | g;
         
         if (root.val == 3)
-            return left_val & right_val;
+            return f & g;
         
         return false;
     }
