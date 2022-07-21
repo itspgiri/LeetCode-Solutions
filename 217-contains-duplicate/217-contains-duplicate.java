@@ -22,12 +22,12 @@ class Solution {
         // return false;
         
         //O(N) TC + O(N) SC
-        HashSet<Integer> set = new HashSet<Integer>();
+        HashSet<Integer> s = new HashSet<Integer>();
         for (int x : nums)
         {
-            if (set.contains(x))
+            if (s.contains(x))
                 return true;
-            set.add(x);
+            s.add(x);
         }
         return false;
     }
