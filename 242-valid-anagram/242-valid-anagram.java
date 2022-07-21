@@ -1,19 +1,17 @@
-class Solution {
+public class Solution {
     public boolean isAnagram(String s, String t) {
-        if (s.length() != t.length())
-            return false;
+        if (s==null && t==null) return true;
+        else if (s==null || t==null) return false;
+        else if (s.length() != t.length()) return false;
+
+        final Map<Integer, Integer> dict = new HashMap<>();
+        s.codePoints().forEach(code -> dict.put(code, dict.getOrDefault(code, 0) + 1));
+        t.codePoints().forEach(code -> dict.put(code, dict.getOrDefault(code, 0) - 1));
         
-        char a_s[] = s.toCharArray();
-        char a_t[] = t.toCharArray();
-        
-        Arrays.sort(a_s);
-        Arrays.sort(a_t);
-        
-        s = Arrays.toString(a_s);
-        t = Arrays.toString(a_t);
-                
-        if (s.equals(t))
-            return true;
-        return false;
+        for(int count : dict.values()) {
+            if (count<0) return false;
+        }
+
+        return true;
     }
 }
