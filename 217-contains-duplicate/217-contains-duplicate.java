@@ -25,11 +25,10 @@ class Solution {
         HashSet<Integer> set = new HashSet<Integer>();
         for (int x : nums)
         {
+            if (set.contains(x))
+                return true;
             set.add(x);
         }
-        if (set.size() == nums.length)
         return false;
-        else
-        return true;
     }
 }
