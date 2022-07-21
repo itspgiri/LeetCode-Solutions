@@ -13,7 +13,6 @@ class Solution {
                 }
             }
         }
-        int ans[] = {a,b};
-        return ans;
+        return new int[] {a,b}; 
     }
 }
