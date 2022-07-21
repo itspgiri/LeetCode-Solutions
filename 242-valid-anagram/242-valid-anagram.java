@@ -1,6 +1,9 @@
 class Solution {
 
     public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length())
+            return false;
+        
         int as[] = new int[26];
         for (char a : s.toCharArray()) {
             as[a - 'a'] += 1;
