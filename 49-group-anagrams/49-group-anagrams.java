@@ -5,18 +5,18 @@ class Solution {
         {
             char[] c = strs[i].toCharArray();
             Arrays.sort(c) ;
-            String temp = String.valueOf(c);
-            if(m.containsKey(temp))
+            String t = String.valueOf(c);
+            if(m.containsKey(t))
             {
-                List<String> list = m.get(temp);
-                list.add(strs[i]);
-                m.put(temp,list);
+                List<String> l = m.get(t);
+                l.add(strs[i]);
+                m.put(t,l);
             }
             else
             { 
-                List<String> list = new ArrayList<>();
-                list.add(strs[i]);
-                m.put(temp, list);
+                List<String> l = new ArrayList<>();
+                l.add(strs[i]);
+                m.put(t, l);
             }            
         }
         List<List<String>> ans = new ArrayList<>();
