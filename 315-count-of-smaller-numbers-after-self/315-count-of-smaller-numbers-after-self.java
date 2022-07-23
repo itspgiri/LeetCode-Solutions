@@ -1,29 +1,39 @@
-class Solution {
+class Solution {    
     public List<Integer> countSmaller(int[] nums) {
-    Integer[] ans = new Integer[nums.length];
-    List<Integer> sorted = new ArrayList<Integer>();
-    for (int i = nums.length - 1; i >= 0; i--) {
-        int index = findIndex(sorted, nums[i]);
-        ans[i] = index;
-        sorted.add(index, nums[i]);
-    }
-    return Arrays.asList(ans);
-}
-private int findIndex(List<Integer> sorted, int target) {
-    if (sorted.size() == 0) return 0;
-    int start = 0;
-    int end = sorted.size() - 1;
-    if (sorted.get(end) < target) return end + 1;
-    if (sorted.get(start) >= target) return 0;
-    while (start + 1 < end) {
-        int mid = start + (end - start) / 2;
-        if (sorted.get(mid) < target) {
-            start = mid + 1;
-        } else {
-            end = mid;
+        int min = 20001;
+        int max = -1;
+        
+        // Finding max and min in the array
+        // And storing max min 
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
         }
+        
+        min--;
+        
+        int[] count = new int[max-min+1];
+        
+        Integer[] result = new Integer[nums.length];
+        
+        for (int i = nums.length-1; i >=0; i--) {
+            
+            int k = nums[i]-min-1;
+            int c = 0;
+            
+            do {
+                c = c + count[k];
+                k = k - (-k&k);
+            } while (k > 0);
+            result[i] = c;
+            
+            k = nums[i]-min;
+            while (k < count.length) {
+                count[k]++;
+                k += (-k&k);
+            }
+        }
+        
+        return Arrays.asList(result);
     }
-    if (sorted.get(start) >= target) return start;
-    return end;
-}
 }
