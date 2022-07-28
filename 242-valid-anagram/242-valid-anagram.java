@@ -1,21 +1,13 @@
+import java.util.Arrays;
 class Solution {
-
     public boolean isAnagram(String s, String t) {
-        if (s==null && t==null) return true;
-        else if (s==null || t==null) return false;
-        else if (s.length() != t.length()) return false;
+
+        char[] sc = s.toCharArray();
+        char[] tc = t.toCharArray();
         
-        int as[] = new int[26];
-        for (char a : s.toCharArray()) {
-            as[a - 'a'] += 1;
-        }
-        for (char a : t.toCharArray()) {
-            as[a - 'a'] -= 1;
-        }
-        for (int x : as)
-            if (x!=0)
-                return false;
+        Arrays.sort(sc);
+        Arrays.sort(tc);
         
-        return true;
+        return Arrays.equals(sc,tc);
     }
 }
