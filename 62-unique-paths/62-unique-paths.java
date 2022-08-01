@@ -3,10 +3,10 @@ class Solution {
         int arr[][] = new int[m][n];
         int i = 0;
         int j = 0;
-        return pathReturn(arr,m,n,i,j);
+        return PT(arr,m,n,i,j);
     }
     
-    private int pathReturn(int[][] arr, int m,int n,int i,int j){
+    private int PT(int[][] arr, int m,int n,int i,int j){
         if(i >= m || j >= n){
             return 0;
         }
@@ -19,6 +19,6 @@ class Solution {
             return arr[i][j];
         }
         
-        return arr[i][j] = pathReturn(arr,m,n,i+1,j) + pathReturn(arr,m,n,i,j+1);
+        return arr[i][j] = PT(arr,m,n,i+1,j) + PT(arr,m,n,i,j+1);
     }
 }
