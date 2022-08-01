@@ -1,14 +1,24 @@
 class Solution {
     public int uniquePaths(int m, int n) {
-        int dp[][]=new int[m][n];
-        for(int i=m-1;i>=0;i--){
-            for(int j=n-1;j>=0;j--){
-                if(i==m-1 && j==n-1) dp[i][j]=1;
-                else if(i==m-1) dp[i][j]=dp[i][j+1];
-                else if(j==n-1) dp[i][j]=dp[i+1][j];
-                else dp[i][j]=dp[i+1][j]+dp[i][j+1];
-            }
+        int arr[][] = new int[m][n];
+        int i = 0;
+        int j = 0;
+        return pathReturn(arr,m,n,i,j);
+    }
+    
+    private int pathReturn(int[][] arr, int m,int n,int i,int j){
+        if(i >= m || j >= n){
+            return 0;
         }
-        return dp[0][0];
+        
+        if(i == m-1 && j == n-1){
+            return 1;
+        }
+        
+        if(arr[i][j] != 0){
+            return arr[i][j];
+        }
+        
+        return arr[i][j] = pathReturn(arr,m,n,i+1,j) + pathReturn(arr,m,n,i,j+1);
     }
 }
