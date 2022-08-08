@@ -5,11 +5,13 @@ class Solution {
         int r = 1;
         while (l < r) {
             int s = n[l] + n[r];
-            if (s == t) return new int[] { l + 1, r + 1 }; 
+            if (s == t) 
+                return new int[] { l + 1, r + 1 }; 
             else if (s < t) {
                 l++;
                 r++;
-            } else if (s > t) {
+            } 
+            else if (s > t) {
                 l--;
             }
         }
