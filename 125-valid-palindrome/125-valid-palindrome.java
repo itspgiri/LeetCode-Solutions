@@ -1,20 +1,33 @@
 class Solution {
-
-    public static String convertString(String s) {
-        String res = "";
-        s = s.toLowerCase();
-        for (char a : s.toCharArray()) {
-            if (a >= 'a' && a <= 'z' || a>='0' && a<='9') res = res + a;
-        }
-        return res;
-    }
-
     public boolean isPalindrome(String s) {
-        s = convertString(s);
-        String pal = "";
-
-        for (char a : s.toCharArray()) pal = a + pal;
-
-        if (s.equals(pal)) return true; else return false;
+        int i = 0;
+        int j = s.length() -1;
+        
+        while (i<j)
+        {
+            char first = s.charAt(i);
+            char last = s.charAt(j);
+            
+            if (Character.isLetterOrDigit(first) == false)
+            {
+                i++;
+                continue;
+            }
+            
+            if (Character.isLetterOrDigit(last) == false)
+            {
+                j--;
+                continue;
+            }
+            
+            if (Character.toLowerCase(first) != Character.toLowerCase(last))
+            {
+                return false;
+            }
+            
+            i++;
+            j--;
+        }
+        return true;
     }
 }
