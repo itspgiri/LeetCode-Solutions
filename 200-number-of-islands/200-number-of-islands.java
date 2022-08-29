@@ -1,28 +1,26 @@
-class Solution {
-   public int numIslands(char[][] grid) {
-    
-    int count=0;
-    boolean[][] visited=new boolean[grid.length][grid[0].length];
-    for(int i=0;i<grid.length;i++){
-        for(int j=0;j<grid[0].length;j++){
-            if(grid[i][j]=='1' && visited[i][j]==false){
-                drawTree(grid,i,j,visited);
-                count++;
+public class Solution {
+    public int numIslands(char[][] grid) {
+        int count = 0;
+        
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    clearRestOfLand(grid, i, j);
+                }
             }
         }
+        return count;
     }
-    return count;
-}
-    public void drawTree(char[][] grid, int i, int j, boolean[][] visited){
+    
+    private void clearRestOfLand(char[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length || grid[i][j] == '0') return;
         
-        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length  || visited[i][j]==true || grid[i][j]=='0'){
-            return; //. proactive call. after funcn call we eliminate if call made wrong
-        }
-        
-        visited[i][j]=true;
-        drawTree(grid,i-1,j,visited);
-        drawTree(grid,i,j+1,visited);
-        drawTree(grid,i,j-1,visited);
-        drawTree(grid,i+1,j,visited);
+        grid[i][j] = '0';
+        clearRestOfLand(grid, i+1, j);
+        clearRestOfLand(grid, i-1, j);
+        clearRestOfLand(grid, i, j+1);
+        clearRestOfLand(grid, i, j-1);
+        return;
     }
 }
