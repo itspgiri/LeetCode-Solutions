@@ -1,25 +1,23 @@
 class Solution {
     public int lastStoneWeight(int[] stones) {
-        // priority queue in descending order
-        PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> (x<y) ? 1:-1);
+        PriorityQueue<Integer> heap = new PriorityQueue<>((a,b) -> b - a);
         
-        for(int stone: stones){
-            pq.add(stone);
+        for (int stone : stones)
+            heap.add(stone);
+        
+        while(heap.size() > 1){
+            int val1 = heap.poll();
+            int val2 = heap.poll();
+            
+            if(val1 > val2)
+                heap.offer(val1-val2);
+            else if (val1 < val2)
+                heap.offer(val2-val1);
+                
         }
         
-        while(pq.size() > 1){
-            int num1 = pq.remove();
-            int num2 = pq.remove();
-            if(num1 != num2){
-                pq.add(num1 - num2);
-            }
-        }
-        
-        if(pq.size() == 1){
-            return pq.peek();
-        } else {
+        if (heap.size() == 0)
             return 0;
-        }
-        
+        return heap.poll();
     }
 }
