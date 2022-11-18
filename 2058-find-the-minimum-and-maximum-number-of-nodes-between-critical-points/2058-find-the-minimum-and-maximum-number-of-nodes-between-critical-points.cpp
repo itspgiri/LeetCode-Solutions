@@ -1,20 +1,29 @@
 class Solution {
 public:
     vector<int> nodesBetweenCriticalPoints(ListNode* head) {
-        ListNode *prev=head;
-        head=head->next;
-        int i=1,mindist=INT_MAX,prev_i=INT_MIN,first_i=-1;
-        while(head->next){
-            if((prev->val < head->val and head->val > head->next->val) ||( prev->val > head->val and head->val < head->next->val)){
-                if(prev_i!=INT_MIN) mindist=min(mindist,i-prev_i);
-                if(first_i==-1) first_i=i;
-                prev_i=i;
+        int minDist=INT_MAX , maxDist=INT_MIN , critical_points=0;
+    ListNode *prev=head , *temp=head->next;
+    int start=0 , end=1 , mid=0;
+    while(temp->next){
+        
+        // cout<<"Prev Value : "<<prev->val<<" Curr Val : "<<temp->val<<" Next Val : "<<temp->next->val<<endl;
+        if((temp->val>prev->val and temp->val>temp->next->val)or(temp->val<prev->val and temp->val<temp->next->val)){
+            critical_points++;
+            if(critical_points>=2){
+                minDist=min(minDist , end-mid);
+                maxDist=max(maxDist , end-start);
+                mid=end;
             }
-            prev=head;
-            head=head->next;
-            i++;
         }
-        if(mindist==INT_MAX) return {-1,-1};
-        return {mindist,prev_i-first_i};
+        if(critical_points==1 and start==0){
+            start=end , mid=end;
+        }
+        prev=temp;
+        temp=temp->next;
+        end++;
     }
+    // cout<<"Critical Points "<<critical_points<<endl;
+    if(critical_points>=2) return {minDist , maxDist};
+    return {-1 , -1};
+}
 };
